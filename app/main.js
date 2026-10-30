@@ -347,6 +347,11 @@ export function bootstrap(root_element) {
         } else if (s === 'open' && had_disconnect) {
           had_disconnect = false;
           showToast('Reconnected', 'success', 2200);
+          // Server-side list subscriptions live on the socket that just died,
+          // and the per-socket revision counter restarts with the new one.
+          // Reset the stores and re-subscribe, otherwise every list keeps
+          // showing the empty state (or drops the fresh snapshot as stale).
+          void clearAndResubscribe();
         }
       };
       client.onConnection(onConn);

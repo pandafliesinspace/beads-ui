@@ -76,5 +76,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mantoni/beads-ui.git"
+  },
+  "allowScripts": {
+    "esbuild@0.27.1": true
   }
 }
